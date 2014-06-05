@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Simple JSF Facelets page</title>
+</h:head>
+<h:body>
+    <h1><h:outputText value="#{indexBacking.pageTitle}"/></h1>
+
+    <ui:repeat value="#{indexBacking.customerList}" var="cust">
+        <div class="customer" style="margin-bottom:2em">
+            <span style="font-weight: bold; font-size:large;">Customer #{cust.companyName}</span>
+            <h:dataTable value="#{cust.resubmissions}" var="resub" styleClass="table-background"
+                             columnClasses="table-odd-col, table-even-col">
+                <h:column>
+                    <f:facet name="header">Due</f:facet>
+                    <h:outputText value="#{resub.due}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Active</f:facet>
+                    <h:outputText value="#{resub.active}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Note</f:facet>
+                    <h:outputText value="#{resub.note}"/>
+                </h:column>
+            </h:dataTable>
+        </div>
+    </ui:repeat>
+
+</h:body>
+</html>
